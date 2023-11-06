@@ -338,7 +338,7 @@ const TradeDialog = ({ pair }: { pair: Pair }) => {
             type="submit"
             className="w-full bg-[#375BD2] text-base font-black leading-4 text-foreground hover:bg-[#375BD2]/90"
           >
-            Swap
+            Swap Test
           </Button>
         </form>
       </Form>
