@@ -14,6 +14,9 @@ const config: HardhatUserConfig = {
             {
                 version: "0.8.16",
             },
+            {
+                version: "0.4.18",
+            },
         ],
     },
     networks: {
@@ -21,7 +24,6 @@ const config: HardhatUserConfig = {
             chainId: 421613,
             forking: {
                 url: `https://arbitrum-goerli.infura.io/v3/${process.env.INFURA_KEY}`,
-                blockNumber: 51264068,
             },
         },
         goerli: {

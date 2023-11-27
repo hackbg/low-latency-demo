@@ -20,10 +20,7 @@ describe("DataStreamsConsumer", function () {
             "IERC20",
             "0x8FB1E3fC51F3b789dED7557E680551d93Ea9d892"
         );
-        const router = await ethers.getContractAt(
-            "ISwapRouter",
-            "0xab7664500b19a7a2362Ab26081e6DfB971B6F1B0"
-        );
+        const router = await ethers.deployContract("UniswapRouter");
         const keeperRegistry = await ethers.deployContract(
             "KeeperRegistryMock"
         );
