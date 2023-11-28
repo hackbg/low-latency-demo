@@ -15,20 +15,20 @@ const config: HardhatUserConfig = {
                 version: "0.8.16",
             },
             {
-                version: "0.4.18",
+                version: "0.4.24",
             },
         ],
     },
     networks: {
         hardhat: {
-            chainId: 421613,
+            chainId: 421614,
             forking: {
-                url: `https://arbitrum-goerli.infura.io/v3/${process.env.INFURA_KEY}`,
+                url: `https://arbitrum-sepolia.infura.io/v3/${process.env.INFURA_KEY}`,
             },
         },
-        goerli: {
-            chainId: 421613,
-            url: `https://arbitrum-goerli.infura.io/v3/${process.env.INFURA_KEY}`,
+        sepolia: {
+            chainId: 421614,
+            url: `https://arbitrum-sepolia.infura.io/v3/${process.env.INFURA_KEY}`,
             accounts: [process.env.PRIVATE_KEY || ""],
         },
     },

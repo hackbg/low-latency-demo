@@ -1,11 +1,11 @@
 import { ethers } from "hardhat";
 import { abi } from "../artifacts/contracts/DataStreamsConsumer.sol/DataStreamsConsumer.json";
-import { deployMocks } from "./mocks";
+import { deployMocks } from "./mocks/deploy";
 
 async function main() {
     const [signer] = await ethers.getSigners();
     const proxyAddress = "0xcB2c15CEe8309A2442a1b0B35c475e1531C4CFE4";
-    const avaxAddress = "0x586A52Ca64f75b49a72e4CaEf5B91374257e1538";
+    const { avax } = await deployMocks();
     const usdc = "0x8fb1e3fc51f3b789ded7557e680551d93ea9d892";
 
     const feedsId = {
@@ -27,10 +27,8 @@ async function main() {
     console.log("Successfully traded WETH tokens for USDC");
 
     // Trade AVAX <> USDC
-    const avax = await ethers.getContractAt("IERC20", avaxAddress);
-
     await avax.approve(await consumer.getAddress(), amountIn);
-    await consumer.trade(avaxAddress, usdc, amountIn, feedsId["avax-usdc"]);
+    await consumer.trade(avax, usdc, amountIn, feedsId["avax-usdc"]);
     console.log("Successfully traded AVAX tokens for USDC");
 }
 

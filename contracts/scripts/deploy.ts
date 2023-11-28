@@ -1,8 +1,10 @@
 import { ethers, upgrades } from "hardhat";
+import { deployMocks } from "./mocks/deploy";
 
 async function main() {
     const [signer] = await ethers.getSigners();
-    const router = "0xab7664500b19a7a2362Ab26081e6DfB971B6F1B0";
+    const { router } = await deployMocks();
+    const routerAddress = await router.getAddress();
     const verifier = "0x2ff010DEbC1297f19579B4246cad07bd24F2488A";
     const linkToken = "0xb1D4538B4571d411F07960EF2838Ce337FE1E80E";
 
@@ -11,10 +13,10 @@ async function main() {
         "0x0002c407f448ffe50a15fd5f1ffe4791830c5f8fa39cd971a3d6ae337aef51a0",
     ];
 
-    const Consumer = await ethers.getContractFactory("DataFeedsConsumer");
+    const Consumer = await ethers.getContractFactory("DataStreamsConsumer");
     const consumer = await upgrades.deployProxy(
         Consumer,
-        [router, verifier, linkToken, feedsId],
+        [routerAddress, verifier, linkToken, feedsId],
         { initializer: "initializer" }
     );
     await consumer.waitForDeployment();
