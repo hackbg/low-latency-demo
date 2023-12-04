@@ -9,7 +9,7 @@ async function main() {
         signer
     );
     */
-    const proxyAddress = "0xcB2c15CEe8309A2442a1b0B35c475e1531C4CFE4";
+    const proxyAddress = "0xF54D570E247B1F62e5c3dEc11510751b37D451cA";
 
     const Consumer = await ethers.getContractFactory("DataStreamsConsumer");
     await upgrades.upgradeProxy(proxyAddress, Consumer);

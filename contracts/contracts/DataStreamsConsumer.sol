@@ -7,6 +7,8 @@ import {StreamsLookupCompatibleInterface} from "@chainlink/contracts/src/v0.8/au
 import {ISwapRouter} from "./interfaces/ISwapRouter.sol";
 import {IVerifierProxy} from "./interfaces/IVerifierProxy.sol";
 
+import "hardhat/console.sol";
+
 /**
  * @title DataStreamsConsumer
  * @dev This contract is a Chainlink Data Streams consumer.
@@ -178,18 +180,23 @@ contract DataStreamsConsumer is
             bytes memory bundledReport
         ) = _decodeData(performData);
 
+        console.log(address(this).balance);
         // verify tokens
         bytes memory verifiedReportData = i_verifier.verify{
             value: unverifiedReport.nativeFee
         }(bundledReport, abi.encode(i_linkToken));
+
+        /*
         Report memory verifiedReport = abi.decode(verifiedReportData, (Report));
 
+        
         // swap tokens
         uint256 successfullyTradedTokens = _swapTokens(
             verifiedReport,
             tradeParams
         );
         emit TradeExecuted(successfullyTradedTokens);
+        */
     }
 
     // ================================================================
